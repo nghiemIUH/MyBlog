@@ -1,0 +1,45 @@
+{% extends '../index.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}" />
+<div class="content">
+    <div class="blogs">
+        {% if user.is_authenticated %}
+        <a href="{% url 'write' %}" style="margin: 0 0 20px 0; width: 30%"
+            >Viết bài</a
+        >
+        {% endif %} {% for blog in blogs %}
+        <div class="blog">
+            <img src="{{blog.user.avatar.url}}" alt="" class="blog_avatar" />
+            <div>
+                <a href="/detail/{{ blog.slug }}" class="blog_title"
+                    >{{ blog.title }}</a
+                >
+                <div class="blog_info">
+                    <div class="blog_date">
+                        <i class="far fa-clock"></i>
+                        <div>{{ blog.date_create }}</div>
+                    </div>
+                    <div class="blog_view">
+                        <i class="far fa-eye"></i>
+                        <div>{{ blog.view }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="top_blog">
+        <h4>Top bài viết</h4>
+        <div>
+            <a href="#"
+                >Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Accusamus ducimus ea quos adipisci, minus aperiam incidunt quod
+                quisquam iste? Necessitatibus quo consectetur consequatur omnis
+                error hic eum laudantium ut maxime.</a
+            >
+        </div>
+        <div><a href="#">Bài viết 1</a></div>
+        <div><a href="#">Bài viết 1</a></div>
+        <div><a href="#">Bài viết 1</a></div>
+    </div>
+</div>
+{% endblock %}

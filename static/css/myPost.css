@@ -1,0 +1,24 @@
+.my_post {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.blog {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+.blog .title {
+    flex: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+}
+.fn i {
+    margin-left: 5px;
+}
+.fn i:hover {
+    color: lightblue;
+    cursor: pointer;
+}

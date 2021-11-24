@@ -1,0 +1,25 @@
+.blog_content {
+    width: 65%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: aliceblue;
+}
+
+h1 {
+    text-align: center;
+}
+
+.table_content {
+    position: fixed;
+    right: 150px;
+    top: 150px;
+}
+
+@media only screen and (max-width: 784px) {
+    .blog_content {
+        width: 90%;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,32 @@
+.login_content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    width: 30%;
+}
+.username,
+.password {
+    display: flex;
+    flex-direction: column;
+}
+.username input,
+.password input {
+    width: 80%;
+}
+
+.other {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+button {
+    border: none;
+    background-color: #208f8f;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+}

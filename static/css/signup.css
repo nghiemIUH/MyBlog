@@ -1,0 +1,29 @@
+button,
+.lb_avatar {
+    border: none;
+    background-color: #208f8f;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.lb_avatar:hover {
+    cursor: pointer;
+}
+
+.signup_content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 30%;
+}
+.signup_info div {
+    display: flex;
+    flex-direction: column;
+}

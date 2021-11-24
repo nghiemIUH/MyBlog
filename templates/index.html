@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="{% static 'img/favicon.ico' %}"
+        />
+        <title>Blog</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Bitter:400,700"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        />
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="{% static 'js/constant.js' %}"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="header-dark">
+                <nav
+                    class="
+                        navbar navbar-dark navbar-expand-md
+                        navigation-clean-search
+                    "
+                >
+                    <div class="container">
+                        <button
+                            class="navbar-toggler"
+                            data-toggle="collapse"
+                            data-target="#navcol-1"
+                        >
+                            <span class="sr-only">Toggle navigation</span
+                            ><span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navcol-1">
+                            <ul class="nav navbar-nav mr-auto">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" href="{% url 'blog' %}"
+                                        >Bài viết</a
+                                    >
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" href="{% url 'doc' %}"
+                                        >Tài liệu</a
+                                    >
+                                </li>
+                                <li class="dropdown">
+                                    <a
+                                        class="
+                                            dropdown-toggle
+                                            nav-link
+                                            dropdown-toggle
+                                        "
+                                        data-toggle="dropdown"
+                                        aria-expanded="false"
+                                        href="#"
+                                        >Sản phẩm
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <a
+                                            class="dropdown-item"
+                                            role="presentation"
+                                            href="#"
+                                            >Tính điểm</a
+                                        ><a
+                                            class="dropdown-item"
+                                            role="presentation"
+                                            href="#"
+                                            >Second Item</a
+                                        >
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- <form class="form-inline mr-auto" target="_self">
+                                <div class="form-group">
+                                    <label for="search-field"
+                                        ><i class="fa fa-search"></i></label
+                                    ><input
+                                        class="form-control search-field"
+                                        type="search"
+                                        name="search"
+                                        id="search-field"
+                                    />
+                                </div>
+                            </form> -->
+                            {% if user.is_authenticated %}
+                            <div class="loged dropdown">
+                                <img
+                                    src="{{ user.avatar.url }}"
+                                    alt=""
+                                    class="drop_img"
+                                    onclick="drop()"
+                                />
+                                <div class="dropdown-content" id="myDropdown">
+                                    <a href="">Thông tin</a>
+                                    <a href="{% url 'my-post' %}">Bài viết</a>
+                                    <a href="{% url 'logout' %}">Đăng suất</a>
+                                </div>
+                            </div>
+                            {% else %}
+                            <span class="navbar-text"
+                                ><a href="{% url 'login' %}" class="login"
+                                    >Đăng nhập</a
+                                ></span
+                            ><a
+                                class="btn btn-light action-button"
+                                role="button"
+                                href="{% url 'signup' %}"
+                                >Đăng ký</a
+                            >
+                            {% endif %}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="">{% block content %} {% endblock %}</div>
+        <div class="footer"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

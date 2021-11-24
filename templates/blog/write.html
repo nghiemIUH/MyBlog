@@ -1,0 +1,28 @@
+{% extends '../index.html' %} {% load static %} {% block content %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'richtexteditor/rte_theme_default.css' %}"
+/>
+<script
+    type="text/javascript"
+    src="{% static 'richtexteditor/rte.js' %}"
+></script>
+<script>
+    RTE_DefaultConfig.url_base = "richtexteditor";
+</script>
+<script
+    type="text/javascript"
+    src="{% static 'richtexteditor/plugins/all_plugins.js' %}"
+></script>
+<link rel="stylesheet" href="{% static 'css/write.css' %}" />
+<div class="title">
+    <input type="text" placeholder="Tiêu đề" id="title" />
+</div>
+<div id="div_editor1" class="content"></div>
+<div style="margin: 0 auto; width: 90%">
+    <button type="button" id="upload">Đăng bài</button>
+</div>
+<script src="{% static 'res/patch.js' %}"></script>
+<script src="{% static 'js/write.js' %}"></script>
+{% endblock %}

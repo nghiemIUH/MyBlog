@@ -1,0 +1,28 @@
+<!-- danh sách các bài đã đăng -->
+{% extends '../index.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/myPost.css' %}" />
+<div class="my_post">
+    {% csrf_token %} {% for blog in blogs %}
+    <div class="blog">
+        <div class="title">{{ blog.title }}</div>
+        <div class="fn">
+            <i
+                class="far fa-edit"
+                id="edit"
+                slug="{{ blog.slug }}"
+                onclick="edit(this)"
+            ></i>
+            <i
+                class="far fa-trash-alt"
+                id="delete"
+                id_post="{{ blog.id }}"
+                onclick="del(this)"
+            ></i>
+        </div>
+    </div>
+    {% empty %}
+    <h3>Chưa có bài viết</h3>
+    {% endfor %}
+</div>
+<script src="{% static 'js/myPost.js' %}"></script>
+{% endblock %}

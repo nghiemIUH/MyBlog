@@ -1,0 +1,95 @@
+.doc_detail {
+    width: 60%;
+    margin: 0 auto;
+}
+.doc_detail .title {
+    font-size: 1.5rem;
+    padding: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+#canvas_container {
+    width: 100%;
+    height: 550px;
+    overflow: auto;
+}
+
+#canvas_container {
+    background: #333;
+    text-align: center;
+    border: solid 3px;
+}
+#navigation_controls {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    border: 0.5px solid lightgray;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+#current_page {
+    width: 20%;
+    text-align: center;
+    margin: 5px;
+    height: 20px;
+    border: none;
+    font-weight: bold;
+}
+.page_act {
+    display: flex;
+    align-items: center;
+}
+.page_act div:hover {
+    cursor: pointer;
+    color: gray;
+}
+#zoom_controls {
+    display: flex;
+    flex-direction: row;
+}
+#zoom_controls div {
+    padding: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+#zoom_controls div:hover {
+    cursor: pointer;
+    color: gray;
+}
+.download-hover {
+    width: 120px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+.download-hover:hover {
+    background-position: 100% 0;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+.download-hover:focus {
+    outline: none;
+}
+.download-hover.download {
+    background-image: linear-gradient(
+        to right,
+        #25aae1,
+        #4481eb,
+        #04befe,
+        #3f86ed
+    );
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
