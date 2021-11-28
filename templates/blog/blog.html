@@ -26,20 +26,53 @@
             </div>
         </div>
         {% endfor %}
+       
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pull-right">
+                
+                {% if blogs.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+        
+                {% if blogs.number > 5 %}
+                <li class="page-item"><a class="page-link" href="?page=1"><i>1</i></a></li>
+                {% endif %}
+        
+                {% for i in blogs.paginator.page_range %}
+                {% if i > blogs.number|add:"-5" %}
+                    {% if i < blogs.number|add:"5" %}
+                        {% if blogs.number == i %}
+                <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+                {% endfor %}
+        
+                {% if blogs.number < blogs.paginator.num_pages|add:"-5" %}
+                <li><a href="?page={{ blogs.paginator.num_pages }}"><i>{{ blogs.paginator.num_pages }}</i></a></li>
+                {% endif %}
+        
+                {% if blogs.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
     <div class="top_blog">
         <h4>Top bài viết</h4>
+        {% for i in top_blog %}
         <div>
-            <a href="#"
-                >Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Accusamus ducimus ea quos adipisci, minus aperiam incidunt quod
-                quisquam iste? Necessitatibus quo consectetur consequatur omnis
-                error hic eum laudantium ut maxime.</a
+            <a href="/detail/{{ i.slug }}"
+                >{{ i.title }}</a
             >
         </div>
-        <div><a href="#">Bài viết 1</a></div>
-        <div><a href="#">Bài viết 1</a></div>
-        <div><a href="#">Bài viết 1</a></div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

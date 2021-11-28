@@ -34,9 +34,9 @@ class CustomUser(AbstractUser):
 
 @receiver(models.signals.post_delete, sender=CustomUser)
 def auto_delete_file_on_delete(sender, instance, **kwargs):
-    if instance.file:
-        if os.path.isfile(instance.file.path):
-            os.remove(instance.file.path)
+    if instance.avatar:
+        if os.path.isfile(instance.avatar.path):
+            os.remove(instance.avatar.path)
 
 
 @receiver(models.signals.pre_save, sender=CustomUser)
@@ -45,11 +45,11 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
         return False
 
     try:
-        old_file = CustomUser.objects.get(pk=instance.pk).file
+        old_file = CustomUser.objects.get(pk=instance.pk).avatar
     except CustomUser.DoesNotExist:
         return False
 
-    new_file = instance.file
+    new_file = instance.avatar
     if not old_file == new_file:
         if os.path.isfile(old_file.path):
             os.remove(old_file.path)

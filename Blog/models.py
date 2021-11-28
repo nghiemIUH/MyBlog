@@ -38,3 +38,23 @@ def pre_save_blog(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pre_save_blog, sender=Blog)
+
+
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    date = models.DateField(auto_created=True)
+
+    def __str__(self) -> str:
+        return self.content
+
+
+class Reply(models.Model):
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    date = models.DateField(auto_created=True)
+
+    def __str__(self) -> str:
+        return self.content

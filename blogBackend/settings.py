@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Blog',
     'Document',
     'multiselectfield',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS_ORIGIN_ALLOW_ALL = True
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
+
+ASGI_APPLICATION = 'blogBackend.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': "channels.layers.InMemoryChannelLayer"
+    },
+}

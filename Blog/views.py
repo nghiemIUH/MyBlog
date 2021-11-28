@@ -1,10 +1,11 @@
+from django.core import paginator
 from django.http.response import JsonResponse
-from .models import Blog
-from .serializers import BlogSerializer
+from .models import Blog, Comment, Reply
 from django.shortcuts import render
 from django.views import View
 import json
 import datetime
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -13,7 +14,16 @@ class BlogView(View):
 
     def get(self, request):
         blogs = Blog.objects.all().order_by('-date_create')
-        return render(request, 'blog/blog.html', {'blogs': blogs})
+        page = request.GET.get('page', 1)
+        paginator = Paginator(blogs, 10)
+        try:
+            blogs_page = paginator.page(page)
+        except PageNotAnInteger:
+            blogs_page = paginator.page(1)
+        except EmptyPage:
+            blogs_page = paginator.page(paginator.num_pages)
+        top_blog = Blog.objects.all().order_by('-view')
+        return render(request, 'blog/blog.html', {'blogs': blogs_page, 'top_blog': top_blog})
 
 
 class WriteBlog(View):

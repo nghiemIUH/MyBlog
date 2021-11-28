@@ -6,6 +6,18 @@
     padding-bottom: 20px;
 }
 
+.footer {
+    display: flex;
+    height: 50px;
+    background-color: #37434d;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    color: #fff;
+    border-radius: 2px;
+}
+
 @media (min-width: 768px) {
     .header-dark {
         padding-bottom: 10px;

@@ -1,15 +1,56 @@
 {% extends '../index.html' %} {% load static %} {% block content %}
 <link rel="stylesheet" href="{% static 'css/blogDetail.css' %}" />
 <div class="blog_content">
+    <script>
+        const slug = "{{ blog.slug }}"
+    </script>
     <h1>{{ blog.title }}</h1>
     <div class="content">{{ blog.content|safe }}</div>
+    <div class="comments">
+        <textarea name="" id="comment_ipt" placeholder="Viết bình luận..."></textarea>
+        <button type="button" id="btn_comment">Bình luận</button>
+        <div class="comment_content" id="comment_content">
+            {% if blog.comment_set.all %}
+                {% for comment in blog.comment_set.all %}
+                <div class="comment">
+                    <img src="{{ comment.user.avatar.url }}" alt="" >
+                    <div class="comment_info">
+                        <div class="comment_content">{{ comment.content }}</div>
+                        <div class="comment_date">
+                            <i class="far fa-clock"></i>
+                            <div style="margin: 5px;">{{ comment.date|date:'d/m/Y' }}</div>
+                            <div type="button" class="rep_btn" id="{{ comment.id }}"
+                                onclick="repOpenClose(this)"
+                            >Trả lời</div>
+                            
+                        </div>
+                        <div class="rep_container" id="rep_{{ comment.id }}">
+                                <textarea  id="rep_ipt" placeholder="Trả lời ..."></textarea>
+                                <button>Trả lời</button>
+                            </div>
+                    </div>
+                </div>
+                {% if comment.reply_set.all %}
+                    {% for rep in comment.reply_set.all %}
+                        <div class="rep">
+                            <img src="{{ rep.user.avatar.url }}" alt="">
+                            <div class="rep_info">
+
+                                <div class="rep_content">{{ rep.content }}</div>
+                                <div class="rep_date">
+                                    <i class="far fa-clock"></i>
+                                    <div style="margin: 5px;">{{ rep.date }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+    </div>
+    <script src="{% static 'js/blogDetail.js' %}"></script>
 </div>
-<!-- <div class="table_content">
-    <h3>Mục lục</h3>
-    <ul>
-        <li>1.............</li>
-        <li>2.............</li>
-        <li>3.............</li>
-    </ul>
-</div> -->
+
 {% endblock %}
