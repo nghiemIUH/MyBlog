@@ -1,0 +1,147 @@
+.header {
+    position: relative;
+    top: 0; /* Stick it to the top */
+    max-height: 70px;
+    width: 100%;
+
+    display: grid;
+    grid-template-areas: "logo nav";
+
+    /* Cosmetics */
+    background-color: #282c34;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+    .account {
+        position: absolute;
+        right: 50px;
+    }
+}
+
+.logo {
+    grid-area: logo;
+    height: 70px;
+}
+
+.nav {
+    grid-area: nav;
+    display: grid;
+    grid-template-columns: repeat(10, auto);
+    align-items: center;
+    justify-content: center;
+
+    .menu {
+        margin-right: 30px;
+        a {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+            transition: 0.5s;
+            text-decoration: none;
+            margin-right: 30px;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .account {
+        button {
+            padding: 7px;
+            outline: none;
+            border: none;
+            font-size: 1.05rem;
+            color: #fff;
+            font-weight: 500;
+            background-color: rgba(255, 0, 0, 0.5);
+            box-shadow: 0px 5px 0px 0px rgba(255, 0, 0, 0.25);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 70ms;
+            margin-right: 20px;
+            &:active {
+                transform: translateY(3px);
+                box-shadow: 0px 2px 0px 0px rgba(255, 0, 0, 0.25);
+            }
+        }
+        .avatar {
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+            border-radius: 50%;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .menu {
+            position: absolute;
+            top: 100%;
+            left: -50px;
+            width: 120px;
+            z-index: 2;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+            background-color: #fff;
+            border-radius: 10px;
+
+            div {
+                padding: 10px;
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.14);
+                    cursor: pointer;
+                }
+            }
+
+            span {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+.open {
+    display: none;
+    grid-area: burger;
+    margin: 0 20px 0 0;
+    padding: 0;
+    justify-self: end;
+    font-size: 40px;
+    border: none;
+    background: none;
+    outline: none;
+    transition: 0.1s;
+
+    &:active {
+        transform: scale(1.2);
+    }
+}
+
+.show {
+    display: inline;
+}
+
+@media (max-width: 700px) {
+    .header {
+        grid-template-areas: "logo burger" "nav nav";
+        .account {
+            position: inherit;
+        }
+    }
+    .nav {
+        grid-template-rows: repeat(4, auto);
+        grid-template-columns: none;
+        grid-row-gap: 20px;
+
+        padding: 30px 0 30px;
+        background: rgba(40, 44, 47, 0.95);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .open {
+        display: inline;
+        margin-right: 50px;
+        font-size: 1.3rem;
+    }
+}

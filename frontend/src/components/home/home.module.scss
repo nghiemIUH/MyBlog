@@ -1,0 +1,19 @@
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Lora", "serif";
+    flex-direction: column;
+    div {
+        position: fixed;
+        top: 20%;
+        font-size: 4rem;
+        text-shadow: 2px 2px 2px #fff;
+    }
+}
+
+.bg {
+    background-size: cover !important;
+    width: 100%;
+    min-height: 750px;
+}
