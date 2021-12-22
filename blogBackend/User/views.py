@@ -33,8 +33,29 @@ def login(request):
 @api_view(['GET', ])
 # @permission_classes([IsAuthenticated])
 def chech_login(request):
-    print(request.user)
     serializer = UserSerializer(request.user)
     if serializer is not None:
-        return Response(data = serializer.data,status=status.HTTP_200_OK)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny, ])
+def register(request):
+
+    data = request.data
+    if User.objects.filter(username=data['username']).count():
+        return Response(data={'info': 'Username đã tồn tại'}, status=status.HTTP_200_OK)
+
+    if User.objects.filter(email=data['email']).count():
+        return Response(data={'info': 'Email đã tồn tại'}, status=status.HTTP_200_OK)
+
+    user = User.objects.create_user(
+        username=data['username'],
+        email=data['email'],
+        password=data['password'],
+        avatar=data['avatar'],
+        full_name=data['full_name']
+    )
+    user.save()
+    return Response(status=status.HTTP_201_CREATED)

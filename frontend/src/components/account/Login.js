@@ -25,8 +25,8 @@ function Login() {
                 password,
             },
         }).then((data) => {
-            localStorage.setItem("access_token", data.data.access_token);
-            localStorage.setItem("refresh_token", data.data.refresh_token);
+            sessionStorage.setItem("access_token", data.data.access_token);
+            sessionStorage.setItem("refresh_token", data.data.refresh_token);
             const action = login(data.data.user);
             dispatch(action);
             navigate("/");

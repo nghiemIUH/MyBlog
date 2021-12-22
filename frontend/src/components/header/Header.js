@@ -24,7 +24,7 @@ function Header() {
     const dropdownRef = useRef(null);
 
     useEffect(() => {
-        const access_token = localStorage.getItem("access_token");
+        const access_token = sessionStorage.getItem("access_token");
         if (access_token === null) {
             return;
         }
@@ -41,7 +41,7 @@ function Header() {
                 dispatch(login(data.data));
             })
             .catch((error) => {
-                const refresh_token = localStorage.getItem("refresh_token");
+                const refresh_token = sessionStorage.getItem("refresh_token");
                 axios({
                     method: "post",
                     url: url + "/user/refresh/",
@@ -50,8 +50,11 @@ function Header() {
                     },
                 })
                     .then((data) => {
-                        localStorage.setItem("access_token", data.data.access);
-                        localStorage.setItem(
+                        sessionStorage.setItem(
+                            "access_token",
+                            data.data.access
+                        );
+                        sessionStorage.setItem(
                             "refresh_token",
                             data.data.refresh
                         );
@@ -107,8 +110,8 @@ function Header() {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
+        sessionStorage.removeItem("access_token");
+        sessionStorage.removeItem("refresh_token");
         dispatch(logout({}));
         window.location.reload();
     };
@@ -125,6 +128,7 @@ function Header() {
                     {Object.keys(MENU).map((key, index) => {
                         return (
                             <Link
+                                className={clsx(style.menu_item)}
                                 to={MENU[key]}
                                 key={index}
                                 style={
@@ -147,10 +151,10 @@ function Header() {
                 {Object.keys(stateUser).length === 0 ? (
                     <div className={clsx(style.account)}>
                         <Link to="/login">
-                            <button>Login</button>
+                            <button>Đăng nhập</button>
                         </Link>
                         <Link to="/register">
-                            <button>Register</button>
+                            <button>Đăng ký</button>
                         </Link>
                     </div>
                 ) : (
@@ -163,13 +167,24 @@ function Header() {
                         />
 
                         {showMenu ? (
-                            <div className={clsx(style.menu)}>
+                            <div className={clsx(style.menu_user)}>
                                 <div>
-                                    <i class="far fa-id-badge"></i>
+                                    <i className="far fa-id-badge"></i>
                                     <span>Profile</span>
                                 </div>
+                                <div>
+                                    <i class="fas fa-tasks"></i>
+                                    <span onClick={show}>
+                                        <Link
+                                            to="/manage-blog"
+                                            className={clsx(style.menu_item)}
+                                        >
+                                            Mange Blog
+                                        </Link>
+                                    </span>
+                                </div>
                                 <div onClick={handleLogout}>
-                                    <i class="fas fa-sign-out-alt"></i>
+                                    <i className="fas fa-sign-out-alt"></i>
                                     <span>Logout</span>
                                 </div>
                             </div>

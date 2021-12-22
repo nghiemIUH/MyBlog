@@ -5,4 +5,5 @@ urlpatterns = [
     path('login/', views.login),
     path('check-login/', views.chech_login),
     path('refresh/', TokenRefreshView.as_view()),
+    path('register/', views.register)
 ]
