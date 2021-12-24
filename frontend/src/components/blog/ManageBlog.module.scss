@@ -1,0 +1,45 @@
+.manage_blog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.list_blog {
+    // flex: 3;
+    .blog_item {
+        display: flex;
+        margin-top: 30px;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid gray;
+
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+        span {
+            margin-left: 10px;
+        }
+        .title {
+            font-size: 1.2rem;
+
+            :hover {
+                cursor: pointer;
+                color: blue;
+            }
+        }
+        .content {
+            margin-left: 10px;
+            .info {
+                display: flex;
+                div {
+                    margin-right: 50px;
+                }
+            }
+        }
+    }
+}

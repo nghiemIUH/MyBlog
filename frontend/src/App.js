@@ -7,6 +7,7 @@ import Login from "./components/account/Login";
 import Register from "./components/account/Register";
 import Profile from "./components/account/Profile";
 import ManageBlog from "./components/blog/ManageBlog";
+import EditorBlog from "./components/blog/EditorBlog";
 
 function App() {
     return (
@@ -27,6 +28,13 @@ function App() {
                     path="/manage-blog"
                     element={
                         <PrivateRoute authed={true} Component={ManageBlog} />
+                    }
+                ></Route>
+                <Route
+                    exact
+                    path="/editor"
+                    element={
+                        <PrivateRoute authed={true} Component={EditorBlog} />
                     }
                 ></Route>
             </Routes>
